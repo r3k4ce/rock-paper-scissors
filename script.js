@@ -56,7 +56,7 @@ function playGame() {
         } else if (comparisonResult == false) {
             console.log(`You chose ${userChoice}. Computer chose ${computerChoice}: You lost this round.`);
         } else {
-            console.log('This round is a tie.')
+            console.log(`You chose ${userChoice}. Computer chose ${computerChoice}: This round is a tie.`)
         }
 
         console.log(scoreAdded(comparisonResult, userScore, computerScore));
