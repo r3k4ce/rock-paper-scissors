@@ -1,51 +1,47 @@
-let choices = ["rock", "paper", "scissors"];
+let choices = ['rock', 'paper', 'scissors'];
 
 function getComputerChoice(choices) {
     let randomIndex = Math.floor(Math.random() * 3);
     return choices[randomIndex];
 }
 
-function getHumanChoice() {
+function getUserChoice(choices) {
     let choice;
     do {
-        choice = prompt("Please enter rock, paper, or scissors.");
-    } while (!choices.includes(choice.toLowerCase()));
-    return choice.toLowerCase();
+        choice = prompt('rock, paper, scissors?');
+        choice = choice.toLowerCase();
+    } while (!choices.includes(choice));
+    return choice;
 }
 
-let humanScore = 0
-let computerScore = 0
-
-let computerSelection = getComputerChoice(choices)
-let humanSelection = getHumanChoice()
-
-function playRound(humanChoice, computerChoice) {
-    let humanLower = humanChoice.toLowerCase();
-
-    let response = `You chose ${humanLower}. Computer chose ${computerChoice}: `
-    let lost = "You lost!";
-    let won = "You won!";
-    let tie = "You Tied!";
-    
-    if (humanLower === "rock" && computerChoice === "paper") {
-        console.log(response + lost);
-        computerScore += 1;
-    } else if (humanLower === "rock" && computerChoice === "scissors") {
-        console.log(response + won);
-        humanScore += 1;
-    } else if (humanLower === "paper" && computerChoice === "rock") {
-        console.log(response + won);
-        humanScore += 1;
-    } else if (humanLower === "paper" && computerChoice === "scissors") {
-        console.log(response + lost);
-        computerScore += 1;
-    } else if (humanLower === "scissors" && computerChoice === "paper") {
-        console.log(response + won);
-        humanScore += 1;
-    } else if (humanLower === "scissors" && computerChoice === "rock") {
-        console.log(response + lost);
-        computerScore += 1;
+function compareChoices(userChoice, computerChoice, choices) {
+    if (userChoice === choices[0] && computerChoice === choices[2]) {
+        return true;
+    } else if (userChoice === choices[1] && computerChoice === choices[0]) {
+        return true;
+    } else if (userChoice === choices[2] && computerChoice === choices[1]) {
+        return true;
+    } else if (userChoice === choices[0] && computerChoice === choices[1]) {
+        return false;
+    } else if (userChoice === choices[1] && computerChoice === choices[2]) {
+        return false;
+    } else if (userChoice === choices[2] && computerChoice === choices[0]) {
+        return false;
+    } else {
+        return undefined;
     }
 }
 
-playRound(humanSelection, computerSelection);
+function scoreAdded(comparisonResult, userScore, computerScore) {
+    switch(comparisonResult) {
+        case true:
+            userScore += 1;
+        case false:
+            computerScore += 1;
+    }
+    return [userScore, computerScore];
+}
+
+function playGame() {
+    
+}
