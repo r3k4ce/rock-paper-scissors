@@ -43,5 +43,25 @@ function scoreAdded(comparisonResult, userScore, computerScore) {
 }
 
 function playGame() {
-    
+    let userScore = 0
+    let computerScore = 0
+
+    while (userScore < 3 && computerScore < 3) {
+        let userChoice = getUserChoice(choices);
+        let computerChoice = getComputerChoice(choices);
+        let comparisonResult = compareChoices(userChoice, computerChoice, choices);
+
+        if (comparisonResult == true) {
+            console.log(`You chose ${userChoice}. Computer chose ${computerChoice}: You won this round.`);
+        } else if (comparisonResult == false) {
+            console.log(`You chose ${userChoice}. Computer chose ${computerChoice}: You lost this round.`);
+        } else {
+            console.log('This round is a tie.')
+        }
+
+        console.log(scoreAdded(comparisonResult, userScore, computerScore));
+    }
+    return userScore > computerScore ? console.log('User wins!') : console.log('Computer wins!');
 }
+
+playGame()
