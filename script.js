@@ -36,8 +36,10 @@ function scoreAdded(comparisonResult, userScore, computerScore) {
     switch(comparisonResult) {
         case true:
             userScore += 1;
+            break;
         case false:
             computerScore += 1;
+            break;
     }
     return [userScore, computerScore];
 }
@@ -59,7 +61,8 @@ function playGame() {
             console.log(`You chose ${userChoice}. Computer chose ${computerChoice}: This round is a tie.`)
         }
 
-        console.log(scoreAdded(comparisonResult, userScore, computerScore));
+        [userScore, computerScore] = scoreAdded(comparisonResult, userScore, computerScore);
+        console.log(`Scores: User - ${userScore}, Computer - ${computerScore}`);
     }
     return userScore > computerScore ? console.log('User wins!') : console.log('Computer wins!');
 }
